@@ -1,0 +1,13 @@
+C:\Users\Hamada\source\repos\MVC Project\WebApi\E-Commerce\E-Commerce.Domian\bin\Debug\net8.0\E-Commerce.Domian.deps.json
+C:\Users\Hamada\source\repos\MVC Project\WebApi\E-Commerce\E-Commerce.Domian\bin\Debug\net8.0\E-Commerce.Domian.dll
+C:\Users\Hamada\source\repos\MVC Project\WebApi\E-Commerce\E-Commerce.Domian\bin\Debug\net8.0\E-Commerce.Domian.pdb
+C:\Users\Hamada\source\repos\MVC Project\WebApi\E-Commerce\E-Commerce.Domian\obj\Debug\net8.0\E-Commerce.Domian.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hamada\source\repos\MVC Project\WebApi\E-Commerce\E-Commerce.Domian\obj\Debug\net8.0\E-Commerce.Domian.AssemblyInfoInputs.cache
+C:\Users\Hamada\source\repos\MVC Project\WebApi\E-Commerce\E-Commerce.Domian\obj\Debug\net8.0\E-Commerce.Domian.AssemblyInfo.cs
+C:\Users\Hamada\source\repos\MVC Project\WebApi\E-Commerce\E-Commerce.Domian\obj\Debug\net8.0\E-Commerce.Domian.csproj.CoreCompileInputs.cache
+C:\Users\Hamada\source\repos\MVC Project\WebApi\E-Commerce\E-Commerce.Domian\obj\Debug\net8.0\E-Commerce.Domian.dll
+C:\Users\Hamada\source\repos\MVC Project\WebApi\E-Commerce\E-Commerce.Domian\obj\Debug\net8.0\refint\E-Commerce.Domian.dll
+C:\Users\Hamada\source\repos\MVC Project\WebApi\E-Commerce\E-Commerce.Domian\obj\Debug\net8.0\E-Commerce.Domian.pdb
+C:\Users\Hamada\source\repos\MVC Project\WebApi\E-Commerce\E-Commerce.Domian\obj\Debug\net8.0\ref\E-Commerce.Domian.dll
+C:\Users\Hamada\source\repos\MVC Project\WebApi\E-Commerce\E-Commerce.Domian\obj\Debug\net8.0\E-Commer.309410C8.Up2Date
+C:\Users\Hamada\source\repos\MVC Project\WebApi\E-Commerce\E-Commerce.Domian\obj\Debug\net8.0\E-Commerce.Domian.csproj.AssemblyReference.cache
