@@ -10,7 +10,7 @@ namespace E_Commerce.Application.Interface
     {
         Task<T?> GetByIdAsync(int id);
         Task<IReadOnlyList<T>> GetAllAsync();
-        Task CreateAsync(T entity);
+        Task<T> CreateAsync(T entity);
         Task UpdateAsync(T entity); 
         Task DeleteAsync(int Id);
         Task<int> SaveChangeAsync();

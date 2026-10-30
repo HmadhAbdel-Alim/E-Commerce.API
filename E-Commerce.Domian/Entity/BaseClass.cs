@@ -9,5 +9,7 @@ namespace E_Commerce.Domian.Entity
     public class BaseClass
     {
         public int Id { get; set; }
+        public bool IsDeleted { get; set; } = false;
+        public DateTime DeleteAt { get; set; } = DateTime.UtcNow;
     }
 }

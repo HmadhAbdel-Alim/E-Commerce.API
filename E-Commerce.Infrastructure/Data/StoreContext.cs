@@ -33,6 +33,11 @@ namespace E_Commerce.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Product>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<Order>().HasQueryFilter(o => !o.IsDeleted);
+            modelBuilder.Entity<OrderItems>().HasQueryFilter(oi => !oi.IsDeleted);
+            modelBuilder.Entity<DeliveryMethod>().HasQueryFilter(dm => !dm.IsDeleted);
+
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 

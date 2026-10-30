@@ -19,15 +19,16 @@ namespace E_Commerce.Infrastructure.Repository
         }
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {
-            return await context.Set<T>().ToListAsync();
+            return await context.Set<T>().Where(x => !EF.Property<bool>(x, "IsDeleted")).ToListAsync();
         }
         public async Task<T?> GetByIdAsync(int id)
         {
-            return await context.Set<T>().FindAsync(id);
+            return await context.Set<T>().FirstOrDefaultAsync(x => EF.Property<int>(x, "ID") == id&& !EF.Property<bool>(x, "IsDeleted"));
         }
-        public async Task CreateAsync(T entity)
+        public async Task<T> CreateAsync(T entity)
         {
             await context.Set<T>().AddAsync(entity);
+            return entity;
         }
 
         public Task UpdateAsync(T entity)

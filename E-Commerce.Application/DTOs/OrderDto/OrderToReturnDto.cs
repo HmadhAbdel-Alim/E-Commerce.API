@@ -13,6 +13,7 @@ namespace E_Commerce.Application.DTOs.OrderDto
         public DateTime OrderDate { get; set; }
         public AddressDto? ShippingAddress { get; set; }
         public string DeliveryMethod { get; set; } = string.Empty;
+        public int DeliveryMethodID { get; set; }
         public decimal ShippingPrice { get; set; }
         public IReadOnlyList<OrderItemDto>? OrderItem { get; set; }
         public decimal SubTotal { get; set; }
