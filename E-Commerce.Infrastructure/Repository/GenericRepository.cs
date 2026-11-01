@@ -19,11 +19,11 @@ namespace E_Commerce.Infrastructure.Repository
         }
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {
-            return await context.Set<T>().Where(x => !EF.Property<bool>(x, "IsDeleted")).ToListAsync();
+            return await context.Set<T>().ToListAsync();
         }
         public async Task<T?> GetByIdAsync(int id)
         {
-            return await context.Set<T>().FirstOrDefaultAsync(x => EF.Property<int>(x, "ID") == id&& !EF.Property<bool>(x, "IsDeleted"));
+            return await context.Set<T>().FindAsync(id);
         }
         public async Task<T> CreateAsync(T entity)
         {

@@ -11,7 +11,7 @@ namespace E_Commerce.Application.DTOs.OrderDto
     {
         public string BuyEmail { get; set; } = string.Empty;
         public string BasketId { get; set; } = string.Empty;
-        public AddressDto? ShippingAdDress { get; set; }
+        public AddressDto? ShippingAddress { get; set; }
         public int DeliveryMethodID { get; set; }
 
     }

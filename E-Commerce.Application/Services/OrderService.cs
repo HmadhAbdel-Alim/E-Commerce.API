@@ -15,10 +15,14 @@ namespace E_Commerce.Application.Services
     public class OrderService
     {
         private readonly IGenericRepository<Order> _orderRepository;
+        private readonly IGenericRepository<DeliveryMethod> _deliveryMethodRepository;
+        private readonly IBasketRepository redis;
 
-        public OrderService(IGenericRepository<Order> orderRepository)
+        public OrderService(IGenericRepository<Order> orderRepository, IGenericRepository<DeliveryMethod> deliveryMethodRepository, IBasketRepository basketRepository)
         {
             _orderRepository = orderRepository;
+            _deliveryMethodRepository = deliveryMethodRepository;
+            redis = basketRepository;
         }
         public async Task<IEnumerable<OrderToReturnDto>> GetAllOrdersAsync()
         {
@@ -67,52 +71,73 @@ namespace E_Commerce.Application.Services
         }
         public async Task<OrderToReturnDto> CreateOrderAsync(OrderCreateDto order)
         {
-            if (order == null) { throw new Exception("Order cannot be null"); }
-            var orderEntity = new Order
-            {
-                BuyEmail = order.BuyEmail,
-                OrderDate = DateTime.UtcNow,
-                ShippingAdress = new Adress
-                {
-                    Street = order.ShippingAdDress!.Street,
-                    City = order.ShippingAdDress.City,
-                    State = order.ShippingAdDress.State,
-                    ZipCode = order.ShippingAdDress.ZipCode,
-                    Country = order.ShippingAdDress.Country
-                },
-                DeliveryMethodID = order.DeliveryMethodID,
-            };
-            var orderr = await _orderRepository.CreateAsync(orderEntity);
+            var basket = await redis.GetBasketAsync(order.BasketId);
+            if (basket == null) { throw new Exception("Basket not found"); }
 
-           var orderDtos = new OrderToReturnDto
+
+            var items = new List<OrderItems>();
+            foreach(var item in basket.Items)
             {
-                ID = orderr.Id,
-                BuyEmail = orderr.BuyEmail,
-                OrderDate = orderr.OrderDate,
+                var productItem = new ProductItemOrdered
+                {
+                    ProductItemId = item.ProductId,
+                    ProductName = item.ProductName,
+                    PictureUrl = item.PictureUrl
+                };
+                var orderItem = new OrderItems(productItem, item.Price, item.Quantity);
+
+                items.Add(orderItem);
+            }
+            var deliveryMethod = await _deliveryMethodRepository.GetByIdAsync(order.DeliveryMethodID);
+
+            var subtotal = items.Sum(i => i.Price * i.Quantity);
+            var ShippingAddress = new Adress
+            {
+                Street = order.ShippingAddress!.Street,
+                City = order.ShippingAddress.City,
+                State = order.ShippingAddress.State,
+                ZipCode = order.ShippingAddress.ZipCode,
+                Country = order.ShippingAddress.Country
+            };
+            var createdorder = new Order(items, subtotal, deliveryMethod, order.BuyEmail, ShippingAddress,basket.PaymentIntentId);
+            await _orderRepository.CreateAsync(createdorder);
+            var result = await _orderRepository.SaveChangeAsync();
+
+            if (result <= 0) { throw new Exception("Problem creating order"); }
+
+            await redis.DeleteBasketAsync(order.BasketId);
+            var orderToReturn = new OrderToReturnDto
+            {
+                ID = createdorder.Id,
+                BuyEmail = createdorder.BuyEmail,
+                OrderDate = createdorder.OrderDate,
                 ShippingAddress = new AddressDto
                 {
-                    Street = orderr.ShippingAdress!.Street,
-                    City = orderr.ShippingAdress.City,
-                    State = orderr.ShippingAdress.State,
-                    ZipCode = orderr.ShippingAdress.ZipCode,
-                    Country = orderr.ShippingAdress.Country
+                    Street = createdorder.ShippingAdress!.Street,
+                    City = createdorder.ShippingAdress.City,
+                    State = createdorder.ShippingAdress.State,
+                    ZipCode = createdorder.ShippingAdress.ZipCode,
+                    Country = createdorder.ShippingAdress.Country
                 },
-                DeliveryMethodID = orderr.DeliveryMethodID,
-                ShippingPrice = orderr.DeliveryMethod!.Price,
+                DeliveryMethodID = createdorder.DeliveryMethodID,
+                ShippingPrice = createdorder.DeliveryMethod!.Price,
             };
-            await _orderRepository.SaveChangeAsync();
-            return orderDtos;
+
+            return orderToReturn;
+
+
+
         }
         public async Task UpdateOrderAsync(int orderId, OrderCreateDto orderDto)
         {
             var Order = await _orderRepository.GetByIdAsync(orderId);
             if (Order == null) { throw new Exception("Order not found"); }
             Order.BuyEmail = orderDto.BuyEmail;
-            Order.ShippingAdress!.Street = orderDto.ShippingAdDress!.Street;
-            Order.ShippingAdress.City = orderDto.ShippingAdDress.City;
-            Order.ShippingAdress.State = orderDto.ShippingAdDress.State;
-            Order.ShippingAdress.ZipCode = orderDto.ShippingAdDress.ZipCode;
-            Order.ShippingAdress.Country = orderDto.ShippingAdDress.Country;
+            Order.ShippingAdress!.Street = orderDto.ShippingAddress!.Street;
+            Order.ShippingAdress.City = orderDto.ShippingAddress.City;
+            Order.ShippingAdress.State = orderDto.ShippingAddress.State;
+            Order.ShippingAdress.ZipCode = orderDto.ShippingAddress.ZipCode;
+            Order.ShippingAdress.Country = orderDto.ShippingAddress.Country;
             Order.DeliveryMethodID = orderDto.DeliveryMethodID;
             await _orderRepository.UpdateAsync(Order);
             await _orderRepository.SaveChangeAsync();

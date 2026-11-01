@@ -17,7 +17,7 @@ namespace E_Commerce.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -86,7 +86,7 @@ namespace E_Commerce.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime>("DeleteAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DeliveryTime")
@@ -127,7 +127,7 @@ namespace E_Commerce.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime>("DeleteAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DeliveryMethodID")
@@ -165,7 +165,7 @@ namespace E_Commerce.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime>("DeleteAt")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
@@ -198,7 +198,7 @@ namespace E_Commerce.Infrastructure.Migrations
                     b.Property<int>("BrandID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime>("DeleteAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -241,7 +241,7 @@ namespace E_Commerce.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime>("DeleteAt")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
@@ -264,7 +264,7 @@ namespace E_Commerce.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime>("DeleteAt")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
@@ -294,7 +294,7 @@ namespace E_Commerce.Infrastructure.Migrations
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime>("DeleteAt")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
@@ -387,7 +387,7 @@ namespace E_Commerce.Infrastructure.Migrations
                             b1.Property<DateTime>("CreateAt")
                                 .HasColumnType("datetime2");
 
-                            b1.Property<DateTime>("DeletedAt")
+                            b1.Property<DateTime>("DeleteAt")
                                 .HasColumnType("datetime2");
 
                             b1.Property<int>("Id")
