@@ -60,7 +60,7 @@ namespace E_Commerce.Application.Services
             };
         }
 
-        public async Task<ProductTypeDto> UpdateBrandAsync(int id, ProductTypeDto Dto)
+        public async Task<ProductTypeDto> UpdateTypeAsync(int id, ProductTypeDto Dto)
         {
             var Type = await repository.GetByIdAsync(id);
             if (Type == null) { throw new Exception("Please return Try in Another Time"); }
@@ -76,7 +76,7 @@ namespace E_Commerce.Application.Services
 
         }
 
-        public async Task DeleteBrandAsync(int id)
+        public async Task DeleteTypeAsync(int id)
         {
             var Type = await repository.GetByIdAsync(id);
             if (Type == null) { throw new Exception("Type Id Not Found"); }

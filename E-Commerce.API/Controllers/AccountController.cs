@@ -12,15 +12,15 @@ namespace E_Commerce.API.Controllers
         private readonly IAuthService _authService;
         public AccountController(IAuthService authService)
         {
-           _authService = authService; 
+            _authService = authService;
         }
         [HttpPost("Register")]
         public async Task<ActionResult<UserDto>> RegisterAsync(RegisterDto user)
 
-        { 
-         var Register= await _authService.RegisterAsync(user);
-            if (Register == null) {return BadRequest(new {message = "Registration Failed" });}
-            return Ok (Register);
+        {
+            var Register = await _authService.RegisterAsync(user);
+            if (Register == null) { return BadRequest(new { message = "Registration Failed" }); }
+            return Ok(Register);
         }
 
         [HttpPost("Login")]
@@ -29,6 +29,7 @@ namespace E_Commerce.API.Controllers
         {
             var user = await _authService.LoginAsync(login);
             if (user == null) { return Unauthorized(); }
-            return Ok (user);
+            return Ok(user);
+        }
     }
 }
