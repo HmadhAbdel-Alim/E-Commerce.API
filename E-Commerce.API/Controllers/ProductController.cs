@@ -15,14 +15,14 @@ namespace E_Commerce.API.Controllers
             _productService = productService;
         }
 
-        [HttpGet("Products")]
+        [HttpGet]
         public async Task<ActionResult<ProductToReturnDto>> GetALlProductsAsync()
         {
             var product = await _productService.GetAllProductAsync();
             return Ok(product);
         }
 
-        [HttpGet("ProductID")]
+        [HttpGet("{Id}")]
         public async Task<ActionResult<ProductToReturnDto>> GetProductByIdAsync(int id)
         {
             var product = await _productService.GetProductById(id);
@@ -30,25 +30,24 @@ namespace E_Commerce.API.Controllers
             return Ok(product);
         }
 
-        [HttpPost("Add Product")]
+        [HttpPost]
         public async Task<ActionResult<ProductToReturnDto>> CreateProductAsync(ProductCreateDto productDto)
         {
             var product = await _productService.CreateProductAsync(productDto);
             return Ok(product);
         }
-        [HttpPut("Update Product")]
+        [HttpPut("Id")]
 
-        public async Task<ActionResult<ProductToReturnDto>> UpdateProductAsync(int id,ProductCreateDto dto )
+        public async Task<ActionResult<ProductToReturnDto>> UpdateProductAsync(int Id,ProductCreateDto dto )
         {
-            var product =  _productService.UpdateProductAsync(id,dto);
-            if (product == null) { return NotFound(new { message = "Product Not Found" }); }
-            return Ok(product);
+            await  _productService.UpdateProductAsync(Id,dto);
+            return Ok();
         }
-        [HttpDelete("Delete Product")]
-        public async Task<ActionResult> DeleteProductAsync(int id)
+        [HttpDelete("{Id}")]
+        public async Task<ActionResult> DeleteProductAsync(int Id)
         {
-            var product =  _productService.DeleteProductAsync(id);
-            return Ok(product);
+            await _productService.DeleteProductAsync(Id);
+            return Ok();
         }
     }
 }
