@@ -16,14 +16,14 @@ namespace E_Commerce.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ProductToReturnDto>> GetALlProductsAsync()
+        public async Task<ActionResult<IEnumerable<ProductToReturnDto>>> GetProducts()
         {
             var product = await _productService.GetAllProductAsync();
             return Ok(product);
         }
 
         [HttpGet("{Id}")]
-        public async Task<ActionResult<ProductToReturnDto>> GetProductByIdAsync(int id)
+        public async Task<ActionResult<ProductToReturnDto>> GetProductById(int id)
         {
             var product = await _productService.GetProductById(id);
             if(product == null) { return BadRequest(new{Message = "Product Id not found"}); }
@@ -31,23 +31,23 @@ namespace E_Commerce.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProductToReturnDto>> CreateProductAsync(ProductCreateDto productDto)
+        public async Task<ActionResult<ProductToReturnDto>> CreateProduct(ProductCreateDto productDto)
         {
             var product = await _productService.CreateProductAsync(productDto);
             return Ok(product);
         }
         [HttpPut("Id")]
 
-        public async Task<ActionResult<ProductToReturnDto>> UpdateProductAsync(int Id,ProductCreateDto dto )
+        public async Task<ActionResult<ProductToReturnDto>> UpdateProduct(int Id,ProductCreateDto dto )
         {
             await  _productService.UpdateProductAsync(Id,dto);
             return Ok();
         }
         [HttpDelete("{Id}")]
-        public async Task<ActionResult> DeleteProductAsync(int Id)
+        public async Task<ActionResult> DeleteProduct(int Id)
         {
             await _productService.DeleteProductAsync(Id);
-            return Ok();
+            return NoContent();
         }
     }
 }

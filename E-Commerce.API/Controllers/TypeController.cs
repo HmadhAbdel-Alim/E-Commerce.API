@@ -16,33 +16,33 @@ namespace E_Commerce.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ProductTypeDto>> GetAllTypesAsync()
+        public async Task<ActionResult<IEnumerable<ProductTypeDto>>> GetTypes()
         {
             var Type = await TypeService.GetAllTypeAsync();
             return Ok(Type);
         }
         [HttpGet("{Id}")]
-        public async Task<ActionResult<ProductTypeDto>> GetTypeByIdAsync(int Id)
+        public async Task<ActionResult<ProductTypeDto>> GetTypeById(int Id)
         {
             var Type = await TypeService.GetTypeByIdAsync(Id);
             return Ok(Type);
         }
         [HttpPost]
-        public async Task<ActionResult<ProductTypeDto>> CreateTypeAsync(ProductTypeDto TypeDto)
+        public async Task<ActionResult<ProductTypeDto>> CreateType(ProductTypeDto TypeDto)
         {
             var Type = await TypeService.CreateTypeAsync(TypeDto);
             return Ok(Type);
         }
 
         [HttpPut("{Id}")]
-        public async Task<ActionResult> UpdateTypeAsync(int Id, ProductTypeDto dto)
+        public async Task<ActionResult> UpdateType(int Id, ProductTypeDto dto)
         {
             var Type = await TypeService.UpdateTypeAsync(Id, dto);
             return Ok(Type);
         }
 
         [HttpDelete("{Id}")]
-        public async Task<ActionResult> DeleteTypeAsync(int Id)
+        public async Task<ActionResult> DeleteType(int Id)
         {
             await TypeService.DeleteTypeAsync(Id);
             return NoContent();

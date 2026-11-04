@@ -16,26 +16,26 @@ namespace E_Commerce.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ProductBrandDto>> GetAllBrandsAsync()
+        public async Task<ActionResult<IEnumerable<ProductBrandDto>>> GetBrands()
         {
             var brand = await brandService.GetAllBrandAsync();
             return Ok(brand);
         }
         [HttpGet("{Id}")]
-        public async Task<ActionResult<ProductBrandDto>> GetBrandByIdAsync(int Id)
+        public async Task<ActionResult<ProductBrandDto>> GetBrandById(int Id)
         {
             var brand = await brandService.GetBrandByIdAsync(Id);
             return Ok(brand);
         }
         [HttpPost]
-        public async Task<ActionResult<ProductBrandDto>> CreateBrandAsync(ProductBrandDto brandDto)
+        public async Task<ActionResult<ProductBrandDto>> CreateBrand(ProductBrandDto brandDto)
         {
             var brand = await brandService.CreateBrandAsync(brandDto);
             return Ok(brand);
         }
 
         [HttpPut("{Id}")]
-        public async Task<ActionResult> UpdateBrandAsync(int Id , ProductBrandDto dto)
+        public async Task<ActionResult> UpdateBrand(int Id , ProductBrandDto dto)
         {
           var brand=  await brandService.UpdateBrandAsync(Id, dto);
             return Ok(brand);
