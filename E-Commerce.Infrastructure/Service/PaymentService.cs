@@ -69,6 +69,7 @@ namespace E_Commerce.Infrastructure.Service
             return basket;
         }
 
+
         public async Task<string?> UpdateOrderPaymentFailed(string paymentIntentId)
         {
             var orders = await OrderRepo.GetAllAsync();
@@ -88,5 +89,23 @@ namespace E_Commerce.Infrastructure.Service
             await OrderRepo.UpdateAsync(order);
             return order.Id.ToString();
         }
+        public async Task HandleStripeWebhookEventAsync(string json, string stripeSignature)
+        {
+            var whSecret = _configuration["StripeSettings:WhSecret"];
+
+            var stripeEvent = EventUtility.ConstructEvent(json, stripeSignature, whSecret);
+
+            if (stripeEvent.Type== "payment_intent.succeeded")
+            {
+                var intent = (PaymentIntent)stripeEvent.Data.Object;
+                await UpdateOrderPaymentSucceeded(intent.Id);
+            }
+            else if (stripeEvent.Type== "payment_intent.failed")
+            {
+                var intent = (PaymentIntent)stripeEvent.Data.Object;
+                await UpdateOrderPaymentFailed(intent.Id);
+            }
+        }
+
     }
 }

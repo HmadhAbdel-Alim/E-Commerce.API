@@ -12,5 +12,7 @@ namespace E_Commerce.Application.Interface
         Task<CustomerBasket?> CreateOrUpdatePaymentIntent(string basketId);
         Task<string?> UpdateOrderPaymentSucceeded(string paymentIntentId);
         Task<string?> UpdateOrderPaymentFailed(string paymentIntentId);
+
+        Task HandleStripeWebhookEventAsync(string json, string stripeSignature);
     }
 }
