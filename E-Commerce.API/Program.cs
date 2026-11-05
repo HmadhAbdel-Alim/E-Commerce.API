@@ -1,4 +1,5 @@
 
+using E_Commerce.API.Middleware;
 using E_Commerce.Application.Interface;
 using E_Commerce.Application.Services;
 using E_Commerce.Domian;
@@ -80,6 +81,16 @@ namespace E_Commerce.API
                     }
                 });
             });
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("CrosePolicy", policy =>
+                {
+                    policy.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .WithOrigins("https://localhost:4200", "http://localhost:4200");
+                });
+            });
 
             var app = builder.Build();
 
@@ -89,8 +100,10 @@ namespace E_Commerce.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 
