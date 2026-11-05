@@ -1,5 +1,5 @@
-﻿using E_Commerce.Domian.Entity;
-using E_Commerce.Domian.Entity.Orders;
+﻿using E_Commerce.Domain.Entity;
+using E_Commerce.Domain.Entity.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;

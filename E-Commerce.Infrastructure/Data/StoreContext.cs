@@ -1,7 +1,7 @@
-﻿using E_Commerce.Domian;
-using E_Commerce.Domian.Entity;
-using E_Commerce.Domian.Entity.Orders;
-using E_Commerce.Domian.Entity.ProductEntity;
+﻿using E_Commerce.Domain;
+using E_Commerce.Domain.Entity;
+using E_Commerce.Domain.Entity.Orders;
+using E_Commerce.Domain.Entity.ProductEntity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

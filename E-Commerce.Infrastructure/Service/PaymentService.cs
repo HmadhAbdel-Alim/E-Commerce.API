@@ -1,6 +1,6 @@
 ﻿using E_Commerce.Application.Interface;
-using E_Commerce.Domian.Entity;
-using E_Commerce.Domian.Entity.ProductEntity;
+using E_Commerce.Domain.Entity;
+using E_Commerce.Domain.Entity.ProductEntity;
 using Microsoft.Extensions.Configuration;
 using Stripe;
 using System;
@@ -15,9 +15,9 @@ namespace E_Commerce.Infrastructure.Service
     {
         private readonly IConfiguration _configuration;
         private readonly IBasketRepository _basketRepository;
-        private readonly IGenericRepository<Domian.Entity.ProductEntity.Product> ProductRepo;
-        private readonly IGenericRepository<Domian.Entity.Orders.Order> OrderRepo;
-        public PaymentService(IConfiguration configuration, IBasketRepository basketRepository, IGenericRepository<Domian.Entity.ProductEntity.Product> productRepo, IGenericRepository<Domian.Entity.Orders.Order> orderRepo   )
+        private readonly IGenericRepository<Domain.Entity.ProductEntity.Product> ProductRepo;
+        private readonly IGenericRepository<Domain.Entity.Orders.Order> OrderRepo;
+        public PaymentService(IConfiguration configuration, IBasketRepository basketRepository, IGenericRepository<Domain.Entity.ProductEntity.Product> productRepo, IGenericRepository<Domain.Entity.Orders.Order> orderRepo   )
         {
             _configuration = configuration;
             _basketRepository = basketRepository;
@@ -75,7 +75,7 @@ namespace E_Commerce.Infrastructure.Service
             var orders = await OrderRepo.GetAllAsync();
             var order = orders.FirstOrDefault(o => o.PaymentIntentId == paymentIntentId);
             if (order == null) return null;
-            order.Status = Domian.Enum.OrderStatus.PaymentFailed;
+            order.Status = Domain.Enum.OrderStatus.PaymentFailed;
             await OrderRepo.UpdateAsync(order);
             return order.Id.ToString();
         }
@@ -85,7 +85,7 @@ namespace E_Commerce.Infrastructure.Service
             var orders = await OrderRepo.GetAllAsync();
             var order = orders.FirstOrDefault(o => o.PaymentIntentId == paymentIntentId);
             if (order == null) return null;
-            order.Status = Domian.Enum.OrderStatus.PaymentReceived;
+            order.Status = Domain.Enum.OrderStatus.PaymentReceived;
             await OrderRepo.UpdateAsync(order);
             return order.Id.ToString();
         }

@@ -1,4 +1,4 @@
-﻿namespace E_Commerce.Domian.Entity
+﻿namespace E_Commerce.Domain.Entity
 {
     public class BasketItem
     {

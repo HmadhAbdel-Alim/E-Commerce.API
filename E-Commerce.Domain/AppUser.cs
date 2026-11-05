@@ -1,4 +1,4 @@
-﻿using E_Commerce.Domian.Entity;
+﻿using E_Commerce.Domain.Entity;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Commerce.Domian
+namespace E_Commerce.Domain
 {
     public class AppUser : IdentityUser
     {

@@ -1,12 +1,12 @@
-﻿using E_Commerce.Domian.Entity.ProductEntity;
-using E_Commerce.Domian.Enum;
+﻿using E_Commerce.Domain.Entity.ProductEntity;
+using E_Commerce.Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Commerce.Domian.Entity.Orders
+namespace E_Commerce.Domain.Entity.Orders
 {
     public class Order:BaseClass
     {

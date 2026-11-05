@@ -36,7 +36,7 @@ namespace E_Commerce.API.Controllers
             var product = await _productService.CreateProductAsync(productDto);
             return Ok(product);
         }
-        [HttpPut("Id")]
+        [HttpPut("{Id}")]
 
         public async Task<ActionResult<ProductToReturnDto>> UpdateProduct(int Id,ProductCreateDto dto )
         {

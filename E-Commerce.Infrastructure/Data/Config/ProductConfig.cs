@@ -1,4 +1,4 @@
-﻿using E_Commerce.Domian.Entity.ProductEntity;
+﻿using E_Commerce.Domain.Entity.ProductEntity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

@@ -2,7 +2,7 @@
 using E_Commerce.API.Middleware;
 using E_Commerce.Application.Interface;
 using E_Commerce.Application.Services;
-using E_Commerce.Domian;
+using E_Commerce.Domain;
 using E_Commerce.Infrastructure.Data;
 using E_Commerce.Infrastructure.Repository;
 using E_Commerce.Infrastructure.Service;

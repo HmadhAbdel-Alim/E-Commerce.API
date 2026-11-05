@@ -1,6 +1,6 @@
 ﻿using E_Commerce.Application.DTOs;
 using E_Commerce.Application.Interface;
-using E_Commerce.Domian.Entity;
+using E_Commerce.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Commerce.Domian.Entity
+namespace E_Commerce.Domain.Entity
 {
     public class CustomerBasket
     {

@@ -22,7 +22,7 @@ namespace E_Commerce.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("E_Commerce.Domian.AppUser", b =>
+            modelBuilder.Entity("E_Commerce.Domain.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -78,7 +78,7 @@ namespace E_Commerce.Infrastructure.Migrations
                     b.ToTable("AppUsers");
                 });
 
-            modelBuilder.Entity("E_Commerce.Domian.Entity.DeliveryMethod", b =>
+            modelBuilder.Entity("E_Commerce.Domain.Entity.DeliveryMethod", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -114,7 +114,7 @@ namespace E_Commerce.Infrastructure.Migrations
                     b.ToTable("DeliveryMethods");
                 });
 
-            modelBuilder.Entity("E_Commerce.Domian.Entity.Orders.Order", b =>
+            modelBuilder.Entity("E_Commerce.Domain.Entity.Orders.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -157,7 +157,7 @@ namespace E_Commerce.Infrastructure.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("E_Commerce.Domian.Entity.Orders.OrderItems", b =>
+            modelBuilder.Entity("E_Commerce.Domain.Entity.Orders.OrderItems", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -187,7 +187,7 @@ namespace E_Commerce.Infrastructure.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("E_Commerce.Domian.Entity.ProductEntity.Product", b =>
+            modelBuilder.Entity("E_Commerce.Domain.Entity.ProductEntity.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -233,7 +233,7 @@ namespace E_Commerce.Infrastructure.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("E_Commerce.Domian.Entity.ProductEntity.ProductBrand", b =>
+            modelBuilder.Entity("E_Commerce.Domain.Entity.ProductEntity.ProductBrand", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -256,7 +256,7 @@ namespace E_Commerce.Infrastructure.Migrations
                     b.ToTable("ProductBrands");
                 });
 
-            modelBuilder.Entity("E_Commerce.Domian.Entity.ProductEntity.ProductType", b =>
+            modelBuilder.Entity("E_Commerce.Domain.Entity.ProductEntity.ProductType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -279,7 +279,7 @@ namespace E_Commerce.Infrastructure.Migrations
                     b.ToTable("ProductTypes");
                 });
 
-            modelBuilder.Entity("E_Commerce.Domian.Entity.Review", b =>
+            modelBuilder.Entity("E_Commerce.Domain.Entity.Review", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -316,15 +316,15 @@ namespace E_Commerce.Infrastructure.Migrations
                     b.ToTable("Reviews");
                 });
 
-            modelBuilder.Entity("E_Commerce.Domian.Entity.Orders.Order", b =>
+            modelBuilder.Entity("E_Commerce.Domain.Entity.Orders.Order", b =>
                 {
-                    b.HasOne("E_Commerce.Domian.Entity.DeliveryMethod", "DeliveryMethod")
+                    b.HasOne("E_Commerce.Domain.Entity.DeliveryMethod", "DeliveryMethod")
                         .WithMany()
                         .HasForeignKey("DeliveryMethodID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("E_Commerce.Domian.Entity.Adress", "ShippingAdress", b1 =>
+                    b.OwnsOne("E_Commerce.Domain.Entity.Adress", "ShippingAdress", b1 =>
                         {
                             b1.Property<int>("OrderId")
                                 .HasColumnType("int");
@@ -372,7 +372,7 @@ namespace E_Commerce.Infrastructure.Migrations
                                 .HasForeignKey("OrderId");
                         });
 
-                    b.OwnsOne("E_Commerce.Domian.Entity.Payment", "payment", b1 =>
+                    b.OwnsOne("E_Commerce.Domain.Entity.Payment", "payment", b1 =>
                         {
                             b1.Property<int>("OrderId")
                                 .HasColumnType("int");
@@ -419,15 +419,15 @@ namespace E_Commerce.Infrastructure.Migrations
                     b.Navigation("payment");
                 });
 
-            modelBuilder.Entity("E_Commerce.Domian.Entity.Orders.OrderItems", b =>
+            modelBuilder.Entity("E_Commerce.Domain.Entity.Orders.OrderItems", b =>
                 {
-                    b.HasOne("E_Commerce.Domian.Entity.Orders.Order", "Order")
+                    b.HasOne("E_Commerce.Domain.Entity.Orders.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("E_Commerce.Domian.Entity.ProductItemOrdered", "ItemOrdered", b1 =>
+                    b.OwnsOne("E_Commerce.Domain.Entity.ProductItemOrdered", "ItemOrdered", b1 =>
                         {
                             b1.Property<int>("OrderItemsId")
                                 .HasColumnType("int");
@@ -466,15 +466,15 @@ namespace E_Commerce.Infrastructure.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("E_Commerce.Domian.Entity.ProductEntity.Product", b =>
+            modelBuilder.Entity("E_Commerce.Domain.Entity.ProductEntity.Product", b =>
                 {
-                    b.HasOne("E_Commerce.Domian.Entity.ProductEntity.ProductBrand", "ProductBrand")
+                    b.HasOne("E_Commerce.Domain.Entity.ProductEntity.ProductBrand", "ProductBrand")
                         .WithMany()
                         .HasForeignKey("BrandID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("E_Commerce.Domian.Entity.ProductEntity.ProductType", "ProductType")
+                    b.HasOne("E_Commerce.Domain.Entity.ProductEntity.ProductType", "ProductType")
                         .WithMany()
                         .HasForeignKey("TypeID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -485,7 +485,7 @@ namespace E_Commerce.Infrastructure.Migrations
                     b.Navigation("ProductType");
                 });
 
-            modelBuilder.Entity("E_Commerce.Domian.Entity.Orders.Order", b =>
+            modelBuilder.Entity("E_Commerce.Domain.Entity.Orders.Order", b =>
                 {
                     b.Navigation("OrderItems");
                 });

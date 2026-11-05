@@ -1,5 +1,5 @@
 ﻿using E_Commerce.Application.Interface;
-using E_Commerce.Domian.Entity;
+using E_Commerce.Domain.Entity;
 using Microsoft.EntityFrameworkCore.Storage;
 using StackExchange.Redis;
 using System;

@@ -1,6 +1,6 @@
 ﻿using E_Commerce.Application.DTOs.AuthDTO;
 using E_Commerce.Application.Interface;
-using E_Commerce.Domian;
+using E_Commerce.Domain;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

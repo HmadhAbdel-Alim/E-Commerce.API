@@ -5,6 +5,6 @@
   </Folder>
   <Project Path="E-Commerce.API/E-Commerce.API.csproj" />
   <Project Path="E-Commerce.Application/E-Commerce.Application.csproj" />
-  <Project Path="E-Commerce.Domian/E-Commerce.Domian.csproj" />
+  <Project Path="E-Commerce.Domain/E-Commerce.Domain.csproj" />
   <Project Path="E-Commerce.Infrastructure/E-Commerce.Infrastructure.csproj" />
 </Solution>

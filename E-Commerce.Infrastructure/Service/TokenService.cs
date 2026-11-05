@@ -1,5 +1,5 @@
 ﻿using E_Commerce.Application.Interface;
-using E_Commerce.Domian;
+using E_Commerce.Domain;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
