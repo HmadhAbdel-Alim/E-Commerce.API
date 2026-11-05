@@ -1,29 +1,28 @@
 # 🛒 E-Commerce Web API (.NET Core)
 
-An enterprise-grade, highly scalable RESTful API built with **ASP.NET Core**, adhering strictly to **Clean Architecture** and modern software design principles.
+A RESTful E-Commerce Web API built with ASP.NET Core and Clean Architecture, covering authentication, product catalog, Redis-backed baskets, Stripe payments, and order management.
 
----
 
 ## 🏗️ Architecture & How It Works
 
 The solution is split into distinct layers to enforce **Separation of Concerns (SoC)** and testability:
-
+```
 ├── API (Controllers, Middlewares, Program.cs)
 ├── Application (Services, DTOs, Interfaces, Specifications)
 ├── Core / Domain (Entities, Enums, Business Rules)
 └── Infrastructure (Data Context, Repositories, Redis, Stripe Integration)
-
+```
 
 ### Key Modules & Workflow:
 1. **Catalog & Products:** Efficient querying with filtering, sorting, search, and server-side pagination using the **Specification Pattern**.
-2. **Redis-Powered Basket:** High-performance, temporary in-memory storage for customer shopping baskets using **Redis**.
+2. **Redis-Powered Basket:** temporary in-memory storage for customer shopping baskets using **Redis**.
 3. **Identity & Authentication:** Secure user management using **ASP.NET Core Identity** with JWT authentication tokens.
 4. **Order Management & Shipping:** Automated price recalculations, order status tracking, and delivery method integration.
 5. **Stripe Payment & Webhook Handling:** 
    - Generates/Updates Stripe PaymentIntents securely.
    - Listens to asynchronous **Stripe Webhooks** (`payment_intent.succeeded` & `payment_intent.payment_failed`) to update order states directly in the database.
 6. **Global Error Handling:** Custom `ExceptionMiddleware` intercepts unhandled runtime exceptions and standardizes API response schemas.
-7. **CORS Enabled:** Fully configured for cross-origin integration with frontend clients (Angular/React).
+7. **CORS Enabled:** configured for cross-origin integration with frontend clients (Angular/React).
 
 ---
 
